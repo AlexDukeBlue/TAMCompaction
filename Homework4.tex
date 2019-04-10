@@ -12,7 +12,7 @@
  
 \pagestyle{fancy}
 \fancyhf{}
-\rhead{CS 590.01 Assignment 1}
+\rhead{ECE 538 Assignment 4}
 \lhead{Alexander Zapata}
 \rfoot{Page \thepage}
  
@@ -123,6 +123,6 @@ CPU Time            & 0.07            & 0.08            & 0.08            & 0.08
 \end{tabular}
 \caption{Results for small delay defects, 1.0ns clock period}
 \end{table}
-
+The delay-effectiveness is generally higher (with the exception of 10\% slack simulation) for the 1.0ns clock period simulations when compared to the 1.1ns clock period simulations. This most-likely means that there were shorter path lengths of the detected defects (within the slack-percentage), because the allowed slack was smaller. So, more shorter paths counted towards delay-effectiveness in the 1.0ns simulations. SDLQ fluctuated for the 1.1ns and 1.0ns simulations for which was higher for a given slack-percentage. Delay-effectiveness and SDQL was generally lower for the 1.2ns simulations compared to the 1.0ns simulations (presumably for similar reasons to the ones discussed in part ii).
 
 \end{document}
