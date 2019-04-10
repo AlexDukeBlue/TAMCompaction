@@ -137,7 +137,7 @@ The delay-effectiveness is generally higher (with the exception of 10\% slack si
 \newpage
 
 \section*{Problem 2 {\small Response compaction using LFSRs:}}
-\subsection*{Simulation Code and Results:}
+\subsection*{(c) Simulation Code and Results:}
 \begin{lstlisting}[language=Python, caption=Python code used to simulate LFSR compaction]
 	
 #compact(flops, is_tapped, input_polynomial) simulates an LFSR given input params.
@@ -179,6 +179,7 @@ As can be seen in Figure 1, the result of the LFSR compaction was found to be a 
 \newpage
 
 \section*{Problem 3 {\small SOC Test Infrastructure Design:}}
+\hspace{0.5cm} To solve this problem, I used a heuristic BFD optimization algorithm (like discussed in class). The results and code are below.
 \begin{table}[ht]
 \centering
 \begin{tabular}{|c|c|c|c|c|}
@@ -237,7 +238,7 @@ design_wrapper(4, 9, 11, [12, 12, 8, 8, 8, 6, 6, 6, 6])
 
 \newpage
 
-\section*{Problem 4 \small{}}
+\section*{Problem 4 \small{SOC Testing:}}
 \subsection*{(a)}
 \hspace{0.5cm}The code used for problem 3 (in Listing 2) was used to design wrappers of the appropriate sizes\\ ($\text{w} = \text{2, 3, 4, 5, 6}$), the results are as tabulated below.
 \begin{table}[ht]
@@ -316,4 +317,32 @@ design_wrapper(4, 9, 11, [12, 12, 8, 8, 8, 6, 6, 6, 6])
 }
 \caption{Wrapper design for width of 6}
 \end{table}
+
+\subsection*{(b)}
+\hspace{0.5cm}Knowing the acceptable widths of the wrappers, and the fact that each of the 8 SOCs are identical, greatly simplified this problem. The following code was used to maximize the minimum wrapper width for this TAM design (minimizing scan-in/scan-out length and therefore minimizing test-time).
+
+\begin{lstlisting}[language=Python, caption=Python code used to minimize TAM test time for the given SOC design, resulting in efficient TAM]
+	
+def tam_designer(total_width, wrapper_widths, num_cores):
+    wrapper_widths.sort(reverse = True)
+    tam_routes = [0] * num_cores
+    for i in range(len(wrapper_widths)):
+        if((sum(tam_routes) == 0) or (sum(tam_routes) > total_width)):
+            for j in range(num_cores):
+                tam_routes[j] = wrapper_widths[i]
+    while(sum(tam_routes) < total_width):
+        min_index = tam_routes.index(min(tam_routes))
+        tam_routes[min_index] += 1
+    return tam_routes
+
+print(tam_designer(36, [2, 3, 4, 5, 6], 8))
+\end{lstlisting}
+
+In the TAM design result, each embedded core wrapper is given their own TAM lines; however, the TAM width is not the same for each core because of the 36-bit TAM width constraint. No wrappers share TAM lines in this case, as preempting tests would result in longer maximum test time for the given widths. Four of the wrappers will have a TAM width of 5 and the other will have TAM widths of 4. This ensures the maximum scan-in/scan-out time is 16 clock cycles, corresponding to the BFD optimization in part (a) and assuming one clock cycle per single-bit shift-in/shift-out.
+
+\newpage
+
+\section*{Problem 5 {\small Test Compression:}}
+
+
 \end{document}
