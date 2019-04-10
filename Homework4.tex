@@ -4,6 +4,15 @@
 \usepackage{rotating}
 \usepackage{tabto}
 \usepackage{amsmath}
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+	basicstyle=\footnotesize,
+	captionpos=b,
+	numbers=left,
+	showspaces=false,
+	showtabs=false
+}
+\lstset{style=mystyle}
 % comment out the next two lines if it doesn't compile for you
 % or you could just install this package as well
 \usepackage{vmargin}   
@@ -129,15 +138,100 @@ The delay-effectiveness is generally higher (with the exception of 10\% slack si
 
 \section*{Problem 2 {\small Response compaction using LFSRs:}}
 \subsection*{Simulation Code and Results:}
+\begin{lstlisting}[language=Python, caption=Python code used to simulate LFSR compaction]
+	
+#compact(flops, is_tapped, input_polynomial) simulates an LFSR given input params.
+#flops- gives the instantiation value of the flip-flopsself.
+#is_tapped- is asserted if the flop input should be tapped (Type-2 LFSR) high-order -> low-order.
+#input_polynomial- the input bits that are xor'ed into the x^{n-1} flop in order.
+def compact(flops, is_tapped, input_polynomial):
+    into_one = False
+    #Iterating through the input_polynomial bits.
+    for i in range(len(input_polynomial)):
+        #Setting temporary flops so that we can update sequentially.
+        temp_flops = flops.copy()
+        #Update each flop depending on tap value and value of previous flop.
+        for j in range(len(flops)):
+            if(is_tapped[j] == 1 and j != 0):
+                temp_flops[j] = flops[len(flops) - 1] ^ flops[j - 1]
+            else:
+                if(j != 0):
+                    temp_flops[j] = flops[j - 1]
+        temp_flops[0] = input_polynomial[i] ^ flops[len(flops) - 1]
+        #Set current values to updated values.
+        flops = temp_flops
+        #Printing result.
+        print("Timestep Result " + str(i + 1) + ": " + str(flops))
+    #Printing final flop values.
+    for i in range(len(flops)):
+        print("x^{}".format(i) + ": " + str(flops[i]))
+
+#Calling the function with the values for the homework.
+compact([0, 0, 0, 0], [1, 0, 0, 1], [1, 0, 1, 0, 1, 1, 1])
+\end{lstlisting}
+
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=16.0cm]{compaction_code.png}
 	\includegraphics[width=10.0cm]{compaction_result.png}
-	\caption{Python code used to simulate compaction (top) and compaction result (bottom)}
 \end{figure}
 As can be seen in Figure 1, the result of the LFSR compaction was found to be a 1 in the $x^{0}$ register (i.e., a 1). This is the same result that was found by hand on the attached sheet.
 
 \newpage
 
+\section*{Problem 3 {\small SOC Test Infrastructure Design:}}
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+                                                                    & Wrapper SC 1                                                                                                    & Wrapper SC 2                                                                                                    & Wrapper SC 3                                                                                & Wrapper SC 4                                                                                                   \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Internal SCs\end{tabular}      & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\\ - one 6-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\\ - one 6-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - two 8-bit chains\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 8-bit chain\\ - two 6-bit chain\end{tabular}} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Input Cells\end{tabular}       & 3                                                                                                               & 2                                                                                                               & 4                                                                                           & 0                                                                                                              \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Output Cells\end{tabular}      & 2                                                                                                               & 3                                                                                                               & 3                                                                                           & 3                                                                                                              \\ \hline
+\begin{tabular}[c]{@{}c@{}}Scan-in, Scan-out\\  Length\end{tabular} & 23                                                                                                              & 23                                                                                                              & 23                                                                                          & 23                                                                                                             \\ \hline
+\end{tabular}
+\caption{Wrapper design generated for embedded core C}
+\end{table}
 
+\begin{lstlisting}[language=Python, caption=Python code used to generate wrapper design.]
+import math
+
+def minimize_function(wrapper_chains, objects_to_add, activity_monitor, name):
+    for i in range(len(objects_to_add)):
+        min_chain = wrapper_chains.index(min(wrapper_chains))
+        max_chain = wrapper_chains.index(max(wrapper_chains))
+        minimum_chain_val = math.inf
+        minimum_chain_num = -1
+        for j in range(len(wrapper_chains)):
+            value_to_minimize = wrapper_chains[max_chain] - (objects_to_add[i] + wrapper_chains[j])
+            if((value_to_minimize >= 0) and (value_to_minimize < minimum_chain_val)):
+                minimum_chain_val = value_to_minimize
+                minimum_chain_num = j
+        if(minimum_chain_num == -1):
+            wrapper_chains[min_chain] += objects_to_add[i]
+            activity_monitor[min_chain].append("{}: {}".format(name, objects_to_add[i]))
+        else:
+            wrapper_chains[minimum_chain_num] += objects_to_add[i]
+            activity_monitor[minimum_chain_num].append("{}: {}".format(name, objects_to_add[i]))
+
+def design_wrapper(tam_width, primary_input_num, primary_output_num, internal_scan):
+    wrapper_chains = []
+    activity_monitor = []
+    for i in range(tam_width):
+        wrapper_chains.append(0)
+        activity_monitor.append(["Wrapper-Chain {}".format(i + 1)])
+    #Step 1
+    internal_scan.sort(reverse = True)
+    minimize_function(wrapper_chains, internal_scan, activity_monitor, "sc")
+    #Step 2
+    primary_inputs = [1] * primary_input_num
+    minimize_function(wrapper_chains, primary_inputs, activity_monitor, "pi")
+    #Step 3
+    primary_outputs = [1] * primary_output_num
+    minimize_function(wrapper_chains, primary_outputs, activity_monitor, "po")
+    activity_monitor.append("Final wrapper chains: {}".format(wrapper_chains))
+    print(*activity_monitor, sep = "\n")
+    return wrapper_chains
+
+design_wrapper(4, 9, 11, [12, 12, 8, 8, 8, 6, 6, 6, 6])
+\end{lstlisting}
 \end{document}

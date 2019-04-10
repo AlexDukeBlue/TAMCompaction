@@ -12,10 +12,10 @@ def minimize_function(wrapper_chains, objects_to_add, activity_monitor, name):
                 minimum_chain_val = value_to_minimize
                 minimum_chain_num = j
         if(minimum_chain_num == -1):
-            wrapper_chains[min_chain] = wrapper_chains[min_chain] + objects_to_add[i]
+            wrapper_chains[min_chain] += objects_to_add[i]
             activity_monitor[min_chain].append("{}: {}".format(name, objects_to_add[i]))
         else:
-            wrapper_chains[minimum_chain_num] = wrapper_chains[minimum_chain_num] + objects_to_add[i]
+            wrapper_chains[minimum_chain_num] += objects_to_add[i]
             activity_monitor[minimum_chain_num].append("{}: {}".format(name, objects_to_add[i]))
 
 def design_wrapper(tam_width, primary_input_num, primary_output_num, internal_scan):
@@ -32,16 +32,16 @@ def design_wrapper(tam_width, primary_input_num, primary_output_num, internal_sc
     minimize_function(wrapper_chains, primary_inputs, activity_monitor, "pi")
     #Step 3
     primary_outputs = [1] * primary_output_num
-    minimize_function(wrapper_chains, primary_inputs, activity_monitor, "po")
+    minimize_function(wrapper_chains, primary_outputs, activity_monitor, "po")
     activity_monitor.append("Final wrapper chains: {}".format(wrapper_chains))
     print(*activity_monitor, sep = "\n")
     return wrapper_chains
 
 design_wrapper(4, 9, 11, [12, 12, 8, 8, 8, 6, 6, 6, 6])
 
-design_wrapper(2, 16, 8, [12, 12, 8, 8])
-design_wrapper(3, 16, 8, [12, 12, 8, 8])
-design_wrapper(4, 16, 8, [12, 12, 8, 8])
-design_wrapper(5, 16, 8, [12, 12, 8, 8])
-design_wrapper(6, 16, 8, [12, 12, 8, 8])
-design_wrapper(18, 16, 8, [12, 12, 8, 8])
+#design_wrapper(2, 16, 8, [12, 12, 8, 8])
+#design_wrapper(3, 16, 8, [12, 12, 8, 8])
+#design_wrapper(4, 16, 8, [12, 12, 8, 8])
+#design_wrapper(5, 16, 8, [12, 12, 8, 8])
+#design_wrapper(6, 16, 8, [12, 12, 8, 8])
+#design_wrapper(18, 16, 8, [12, 12, 8, 8])
