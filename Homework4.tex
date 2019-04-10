@@ -125,4 +125,19 @@ CPU Time            & 0.07            & 0.08            & 0.08            & 0.08
 \end{table}
 The delay-effectiveness is generally higher (with the exception of 10\% slack simulation) for the 1.0ns clock period simulations when compared to the 1.1ns clock period simulations. This most-likely means that there were shorter path lengths of the detected defects (within the slack-percentage), because the allowed slack was smaller. So, more shorter paths counted towards delay-effectiveness in the 1.0ns simulations. SDLQ fluctuated for the 1.1ns and 1.0ns simulations for which was higher for a given slack-percentage. Delay-effectiveness and SDQL was generally lower for the 1.2ns simulations compared to the 1.0ns simulations (presumably for similar reasons to the ones discussed in part ii).
 
+\newpage
+
+\section*{Problem 2 {\small Response compaction using LFSRs:}}
+\subsection*{Simulation Code and Results:}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=16.0cm]{compaction_code.png}
+	\includegraphics[width=10.0cm]{compaction_result.png}
+	\caption{Python code used to simulate compaction (top) and compaction result (bottom)}
+\end{figure}
+As can be seen in Figure 1, the result of the LFSR compaction was found to be a 1 in the $x^{0}$ register (i.e., a 1). This is the same result that was found by hand on the attached sheet.
+
+\newpage
+
+
 \end{document}
