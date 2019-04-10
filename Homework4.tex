@@ -425,9 +425,18 @@ print("Heuristic choice for fanout coloring: " + str(fanout_decompressor(pattern
 \end{lstlisting} 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=10.0cm]{grap.png}
+	\includegraphics[width=14.0cm]{grap.png}
 	\caption{Conflict Graph generated from the pseudo-random test-pattern set}
 \end{figure}
-\subsection*{(b)}
 
+\newpage
+
+From this conflict graph, and a memoization of which kind of compatibility each pattern-set had with the others (normal or inverse), the following fanout structure was created:
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=16.0cm]{fanout_lines.png}
+	\caption{Fanout-based decompressor generated for Part (a)}
+\end{figure} 
+\subsection*{(b)}
+\hspace{0.5cm}
 \end{document}

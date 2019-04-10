@@ -65,14 +65,12 @@ def fanout_decompressor(pattern_holder, num_chains):
                 for k in range(pattern_holder_length):
                     same = same and test_compare(pattern_holder[k][i], pattern_holder[k][j])
                     inv = inv and inv_compare(pattern_holder[k][i], pattern_holder[k][j])
-                # if(same and not inv):
-                #     print("Compatibility for chains {} and {}".format(i, j))
-                # elif(inv and not same):
-                #     print("Inverted compatibility for chains {} and {}".format(i, j))
-                # elif(same and inv):
-                #     print("Complete compatibility for chains {} and {}".format(i, j))
-                # elif(not same and not inv):
-                #     conflict_graph[i].append(j)
+                if(same and not inv):
+                    print("Compatibility for chains {} and {}".format(i, j))
+                elif(inv and not same):
+                    print("Inverted compatibility for chains {} and {}".format(i, j))
+                elif(same and inv):
+                    print("Complete compatibility for chains {} and {}".format(i, j))
                 if(not same and not inv):
                     conflict_graph[i].append(j)
     print("Conflict Graph:")
