@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  10 APR 2019 07:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  10 APR 2019 07:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -237,27 +237,13 @@ Package caption Info: End \AtBeginDocument code.
  [1
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (42.94858pt too wide) in paragraph at lines 88--97
- [][] 
- []
-
 
 Package Fancyhdr Warning: \footskip is too small (0.0pt): 
  Make it at least 8.39996pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2]
-Overfull \hbox (27.94853pt too wide) in paragraph at lines 107--116
- [][] 
- []
-
-
-Overfull \hbox (32.94855pt too wide) in paragraph at lines 124--133
- [][] 
- []
-
-[3] (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
+[2] [3] (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 LaTeX Font Info:    Try loading font information for OML+cmr on input line 145.
@@ -361,7 +347,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  38i,16n,43p,1033b,1620s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on "/Users/Zapata/Desktop/School/Spring 2019/ECE 538/LecturesAndHW/HW/.texpadtmp/Homework4.pdf" (11 pages, 506876 bytes).
+Output written on "/Users/Zapata/Desktop/School/Spring 2019/ECE 538/LecturesAndHW/HW/.texpadtmp/Homework4.pdf" (11 pages, 506698 bytes).
 PDF statistics:
  109 PDF objects out of 1000 (max. 8388607)
  72 compressed objects within 1 object stream
