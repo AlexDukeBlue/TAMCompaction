@@ -1,0 +1,9 @@
+After uploading "s38417_atpg.lib" and "setup_mentor" files to your working folder "MYFOLDER" on one of the vlsiXX servers, run the following commands from the terminal:
+1. cd MYFOLDER
+2. tcsh
+3. setenv PATH /home/software/Mentor/tessent/bin:$PATH
+4. source setup_mentor
+
+Now you are good to run Fastscan and other Mentor tools such as DftAdvisor. 
+
+Note: the lib file is needed by the ATPG tool to be acquainted with scan-specific standard cells such as "SDFFNSR" or scannable flip-flop present in the scan-inserted RTL of your circuit under test. 

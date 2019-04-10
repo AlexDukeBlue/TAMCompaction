@@ -1,0 +1,89 @@
+#
+# $Id: setup_mentor_ic.csh,v 1.5 2003/09/05 22:10:09 sean Exp $
+#
+# Prepare the csh/tcsh user environment for running IC Flow from Mentor
+#
+if ( ! $?prompt ) exit
+
+set OS=`uname`
+if ( ${OS} == 'SunOS' ) then
+   set grep=/usr/xpg4/bin/grep
+else
+   set grep=/bin/grep
+endif
+                                                                                                             
+if ( -f /no_tools ) then
+   if ( ! -f ${HOME}/.ee_no_tools_warn ) then
+      echo "Mentor IC should not be run on this machine: please use either"
+      echo "a DATC or DSIL machine instead."
+   endif
+   exit 0
+endif
+                                                                                                             
+# Where is Mentor IC installed
+set ICBASE=/home/software/Mentor/ICFlow
+set ICVER=2003.1
+set ICHOME=${ICBASE}/${ICVER}
+
+# Find the License server
+set PORT=27300
+set LSERV=pratt-win01.egr.duke.edu
+
+if ( $?LM_LICENSE_FILE ) then
+   printenv LM_LICENSE_FILE | ${grep} -q ${PORT}@${LSERV}
+   if ( $status != 0 ) then
+      setenv LM_LICENSE_FILE ${LM_LICENSE_FILE}:${PORT}@${LSERV}
+   endif
+else
+   setenv LM_LICENSE_FILE ${PORT}@${LSERV}
+endif
+
+# Limit core dumps
+limit coredumpsize 0
+
+# Location of MGC_HEP directory - contains important Mentor files
+set HEPDIR=/opt/digital/share/mgc_hep
+if ( $?MGC_HEP ) then
+   printenv MGC_HEP | ${grep} -q ${HEPDIR}
+   if ( $status != 0 ) then
+      setenv MGC_HEP ${MGC_HEP}:${HEPDIR}
+   endif
+else
+   setenv MGC_HEP ${HEPDIR}
+endif
+
+# This Concatenates the System Location map (mentor
+# version specific) ${MGC_HEP}/maps/mgc_location_map.default
+# with the # ~/mgc/mgc_location_map.custom location map
+${MGC_HEP}/bin/genmap
+
+# Mentor Working Directory
+set MENTORWD=${HOME}/mentor
+if ( ! -d ${MENTORWD} ) then
+   mkdir ${MENTORWD}
+endif
+setenv MGC_WD ${MENTORWD}
+
+# Make MGC_HOME point to here
+setenv MGC_HOME ${ICHOME}
+
+# Add IC FLow binaries to user path
+set ICPATH=${ICHOME}/bin
+
+printenv PATH | ${grep} -q ${ICPATH}
+if ( $status != 0 ) then
+   set path = ($path ${ICPATH})
+endif
+
+# Clean up
+unset grep
+unset ICBASE
+unset ICVER
+unset PORT
+unset LSERV
+unset HEPDIR
+unset MENTORWD
+unset ICHOME
+unset ICPATH
+
+# End O'File

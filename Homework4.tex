@@ -1,0 +1,54 @@
+\documentclass[letterpaper]{article} % Feel free to change this
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{rotating}
+\usepackage{tabto}
+\usepackage{amsmath}
+% comment out the next two lines if it doesn't compile for you
+% or you could just install this package as well
+\usepackage{vmargin}   
+\setmarginsrb{1.0in}{1.0in}{1.0in}{1.0in}{12pt}{10mm}{12pt}{0mm}
+\usepackage{fancyhdr}
+ 
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{CS 590.01 Assignment 1}
+\lhead{Alexander Zapata}
+\rfoot{Page \thepage}
+ 
+\begin{document}
+
+\title{ECE 538: VLSI System Testing\\
+\begin{large}{Assignment 4}\end{large}
+\date{April 19, 2019}} % Change this to the date you are submitting
+\author{Alexander Zapata}
+\maketitle
+
+
+\vspace{12.0cm}
+\section*{Duke Community Standard}
+
+By submitting this \LaTeX{} document, I affirm that
+\begin{enumerate}
+    \item I have adhered to the Duke Community Standard in completing this assignment.
+\end{enumerate}
+
+\newpage 
+
+\section*{Problem 1 {\small Path	Delay	and	Small	Delay	Defect	Testing	using	Synopsys	TetraMax:}}
+\subsection*{a.}
+\subsubsection*{(i)}
+\begin{table}[ht]
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+Number of Critical Paths & 50      & 100     & 150     & 200     & 250     & 300     \\ \hline
+Total Faults             & 50      & 100     & 150     & 200     & 250     & 300     \\ \hline
+Detected                 & 44      & 82      & 123     & 128     & 129     & 128     \\ \hline
+Test Coverage            & 88.00\% & 82.00\% & 82.00\% & 64.00\% & 51.60\% & 42.67\% \\ \hline
+Patterns                 & 9       & 18      & 19      & 19      & 19      & 18      \\ \hline
+CPU Time                 & 0.02    & 0.02    & 0.03    & 0.02    & 0.03    & 0.05    \\ \hline
+\end{tabular}
+\caption{Results for path-delay faults, 0.15ns clock period}
+\end{table}
+
+\end{document}

@@ -1,0 +1,48 @@
+
+model SDFF (D, SI, SE, ST, RT, CK, Q) (
+        cell_type = SCANCELL CK D;
+        scan_definition (
+                type = mux_scan;
+                data_in = D;
+                scan_in = SI;
+                scan_enable = SE;
+                scan_out = Q;
+        )
+        input (D, SI, SE, ST, RT) ()
+        input (CK) (clock = rise_edge;)
+        intern(_D) (primitive = _mux (D, SI, SE, _D);)
+        output(Q)  (primitive = _dff(ST, RT, CK, _D, Q, );)
+)
+
+model SDFFNSR (D, SI, SE, CK, Q) (
+        cell_type = SCANCELL CK D;
+        scan_definition (
+                type = mux_scan;
+                data_in = D;
+                scan_in = SI;
+                scan_enable = SE;
+                scan_out = Q;
+        )
+        input (D, SI, SE) ()
+        input (CK) (clock = rise_edge;)
+        intern(_D) (primitive = _mux (D, SI, SE, _D);)
+        output(Q)  (primitive = _dff(, , CK, _D, Q, );)
+)
+
+model DFF1 (D, ST, RT, CK, Q) (
+        input (D, ST, RT) ()
+        input (CK) (clock = rise_edge;)
+        output(Q)  (primitive = _dff(ST, RT, CK, D, Q, );)
+)
+
+model DFF1NSR (D, CK, Q) (
+        input (D) ()
+        input (CK) (clock = rise_edge;)
+        output(Q)  (primitive = _dff(, , CK, D, Q, );)
+)
+
+model DLATCH(D, CK, Q) (
+        input(D, CK) ()
+        output(Q) (primitive = _dlat(, , CK, D, Q, );)
+)
+
