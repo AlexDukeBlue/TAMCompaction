@@ -36,7 +36,7 @@ By submitting this \LaTeX{} document, I affirm that
 \newpage 
 
 \section*{Problem 1 {\small Path	Delay	and	Small	Delay	Defect	Testing	using	Synopsys	TetraMax:}}
-\subsection*{a.}
+\subsection*{a. Path Delay Faults}
 \subsubsection*{(i)}
 \begin{table}[ht]
 \begin{tabular}{|c|c|c|c|c|c|c|}
@@ -51,6 +51,8 @@ CPU Time                 & 0.02    & 0.02    & 0.03    & 0.02    & 0.03    & 0.0
 \caption{Results for path-delay faults, 0.15ns clock period}
 \end{table}
 
+\subsubsection*{(ii)}
+
 \begin{table}[ht]
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
@@ -64,4 +66,20 @@ CPU Time                 & 0.01    & 0.03    & 0.03    & 0.03    & 0.03    & 0.0
 \caption{Results for path-delay faults, 0.10ns clock period}
 \end{table}
 
+\subsection*{b. Small Delay Defects}
+\subsubsection*{(i)}
+\begin{table}[ht]
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Slack               & 10\%            & 15\%             & 20\%            & 25\%             & 30\%            \\ \hline
+Total Faults        & 4094            & 4094             & 4094            & 4094             & 4094            \\ \hline
+Detected            & 3994            & 3994             & 3994            & 3994             & 3994            \\ \hline
+Delay Effectiveness & 0.11ns(55.17\%) & 0.165ns(30.75\%) & 0.22ns(50.08\%) & 0.275ns(49.82\%) & 0.33ns(53.68\%) \\ \hline
+SDQL                & 6289088.50      & 6126893.50       & 5438607.50      & 4897204.50       & 4477742.50      \\ \hline
+CPU Time            & 0.07            & 0.07             & 0.07            & 0.08             & 0.08            \\ \hline
+\end{tabular}
+\end{table}
+\subsubsection*{(ii)}
+
+\subsubsection*{(iii)}
 \end{document}
