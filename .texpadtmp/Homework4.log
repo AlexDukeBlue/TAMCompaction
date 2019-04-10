@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  10 APR 2019 05:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  10 APR 2019 05:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -331,17 +331,27 @@ Overfull \hbox (1.636pt too wide) in paragraph at lines 437--438
  [][] 
  []
 
+
+Overfull \hbox (30.90265pt too wide) in paragraph at lines 446--447
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (30.90265pt too wide) in paragraph at lines 447--449
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
 [10 <./fanout_lines.png>] (/Users/Zapata/Desktop/School/Spring 2019/ECE 538/LecturesAndHW/HW/.texpadtmp/Homework4.aux) ) 
 Here is how much of TeX's memory you used:
- 4987 strings out of 493014
- 73960 string characters out of 6133351
+ 4993 strings out of 493014
+ 74087 string characters out of 6133351
  183100 words of memory out of 5000000
- 8467 multiletter control sequences out of 15000+600000
+ 8473 multiletter control sequences out of 15000+600000
  9992 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,16n,43p,1033b,1620s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on "/Users/Zapata/Desktop/School/Spring 2019/ECE 538/LecturesAndHW/HW/.texpadtmp/Homework4.pdf" (10 pages, 440219 bytes).
+Output written on "/Users/Zapata/Desktop/School/Spring 2019/ECE 538/LecturesAndHW/HW/.texpadtmp/Homework4.pdf" (10 pages, 442722 bytes).
 PDF statistics:
  104 PDF objects out of 1000 (max. 8388607)
  70 compressed objects within 1 object stream
