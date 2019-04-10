@@ -69,7 +69,7 @@ CPU Time                 & 0.01    & 0.03    & 0.03    & 0.03    & 0.03    & 0.0
 \end{tabular}
 \caption{Results for path-delay faults, 0.10ns clock period}
 \end{table}
-
+The fault coverage for the 0.15ns/0.10ns path delay fault simulations were exactly the same. Having the same total faults, detected faults, and fault coverage means that--- from one timing to the next--- no additional delay faults were found on the critical paths tested (i.e., the paths not detected in the 0.15ns simulation had significant enough slack to also not be detected in the 0.10ns simulation). Between simulations, there was one more pattern for the 200 critical path simulation with 0.15ns clock than 0.10ns clock. This means that with the faster clock, fewer patterns were necessary to sensitize a delay long enough to detect. The CPU times were roughly the same for each simulation.
 
 \subsection*{b. Small Delay Defects}
 \subsubsection*{(i)}
