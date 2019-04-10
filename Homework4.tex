@@ -189,7 +189,7 @@ As can be seen in Figure 1, the result of the LFSR compaction was found to be a 
 \begin{tabular}[c]{@{}c@{}}Wrapper\\ Output Cells\end{tabular}      & 2                                                                                                               & 3                                                                                                               & 3                                                                                           & 3                                                                                                              \\ \hline
 \begin{tabular}[c]{@{}c@{}}Scan-in, Scan-out\\  Length\end{tabular} & 23                                                                                                              & 23                                                                                                              & 23                                                                                          & 23                                                                                                             \\ \hline
 \end{tabular}
-\caption{Wrapper design generated for embedded core C}
+\caption{Wrapper design generated for embedded core C, TAM width of 4}
 \end{table}
 
 \begin{lstlisting}[language=Python, caption=Python code used to generate wrapper design.]
@@ -234,4 +234,86 @@ def design_wrapper(tam_width, primary_input_num, primary_output_num, internal_sc
 
 design_wrapper(4, 9, 11, [12, 12, 8, 8, 8, 6, 6, 6, 6])
 \end{lstlisting}
+
+\newpage
+
+\section*{Problem 4 \small{}}
+\subsection*{(a)}
+\hspace{0.5cm}The code used for problem 3 (in Listing 2) was used to design wrappers of the appropriate sizes\\ ($\text{w} = \text{2, 3, 4, 5, 6}$), the results are as tabulated below.
+\begin{table}[ht]
+\centering
+\scalebox{0.75}{
+\begin{tabular}{|c|c|c|}
+\hline
+                                                                    & Wrapper SC 1                                                                                                    & Wrapper SC 2                                                                                                    \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Internal SCs\end{tabular}      & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\\ - one 8-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\\ - one 8-bit chain\end{tabular}} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Input Cells\end{tabular}       & 8                                                                                                               & 8                                                                                                               \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Output Cells\end{tabular}      & 4                                                                                                               & 4                                                                                                               \\ \hline
+\begin{tabular}[c]{@{}c@{}}Scan-in, Scan-out\\  Length\end{tabular} & 32                                                                                                              & 32                                                                                                              \\ \hline
+\end{tabular}
+}
+\caption{Wrapper design for width of 2}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\scalebox{0.75}{
+\begin{tabular}{|c|c|c|c|}
+\hline
+                                                                    & Wrapper SC 1                                                                                & Wrapper SC 2                                                                                & Wrapper SC 3                                                                               \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Internal SCs\end{tabular}      & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - two 8-bit chain\end{tabular}} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Input Cells\end{tabular}       & 7                                                                                           & 7                                                                                           & 2                                                                                          \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Output Cells\end{tabular}      & 3                                                                                           & 2                                                                                           & 3                                                                                          \\ \hline
+\begin{tabular}[c]{@{}c@{}}Scan-in, Scan-out\\  Length\end{tabular} & 22                                                                                          & 21                                                                                          & 21                                                                                         \\ \hline
+\end{tabular}
+}
+\caption{Wrapper design for width of 3}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\scalebox{0.75}{
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+                                                                    & Wrapper SC 1                                                                                & Wrapper SC 2                                                                                & Wrapper SC 3                                                                               & Wrapper SC 4                                                          \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Internal SCs\end{tabular}      & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 8-bit chain\end{tabular}} & \begin{tabular}[c]{@{}c@{}}Included:\\ - one 8-bit chain\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Input Cells\end{tabular}       & 2                                                                                           & 2                                                                                           & 6                                                                                          & 6                                                                     \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Output Cells\end{tabular}      & 2                                                                                           & 2                                                                                           & 2                                                                                          & 2                                                                     \\ \hline
+\begin{tabular}[c]{@{}c@{}}Scan-in, Scan-out\\  Length\end{tabular} & 16                                                                                          & 16                                                                                          & 16                                                                                         & 16                                                                    \\ \hline
+\end{tabular}
+}
+\caption{Wrapper design for width of 4}
+\end{table}
+
+\newpage
+
+\begin{table}[ht]
+\centering
+\scalebox{0.75}{
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+                                                                    & Wrapper SC 1                                                                                & Wrapper SC 2                                                                                & Wrapper SC 3                                                                               & Wrapper SC 4                                                          & \multicolumn{1}{l|}{Wrapper SC 5} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Internal SCs\end{tabular}      & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 8-bit chain\end{tabular}} & \begin{tabular}[c]{@{}c@{}}Included:\\ - one 8-bit chain\end{tabular} & None                              \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Input Cells\end{tabular}       & 0                                                                                           & 0                                                                                           & 4                                                                                          & 4                                                                     & 8                                 \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Output Cells\end{tabular}      & 1                                                                                           & 1                                                                                           & 1                                                                                          & 1                                                                     & 4                                 \\ \hline
+\begin{tabular}[c]{@{}c@{}}Scan-in, Scan-out\\  Length\end{tabular} & 13                                                                                          & 13                                                                                          & 13                                                                                         & 13                                                                    & 12                                \\ \hline
+\end{tabular}
+}
+\caption{Wrapper design for width of 5}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\scalebox{0.75}{
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+                                                                    & Wrapper SC 1                                                                                & Wrapper SC 2                                                                                & Wrapper SC 3                                                                               & Wrapper SC 4                                                          & \multicolumn{1}{l|}{Wrapper SC 5} & \multicolumn{1}{l|}{Wrapper SC 6} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Internal SCs\end{tabular}      & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 8-bit chain\end{tabular}} & \begin{tabular}[c]{@{}c@{}}Included:\\ - one 8-bit chain\end{tabular} & None                              & None                              \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Input Cells\end{tabular}       & 0                                                                                           & 0                                                                                           & 4                                                                                          & 4                                                                     & 8                                 & 0                                 \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Output Cells\end{tabular}      & 0                                                                                           & 0                                                                                           & 0                                                                                          & 0                                                                     & 4                                 & 4                                 \\ \hline
+\begin{tabular}[c]{@{}c@{}}Scan-in, Scan-out\\  Length\end{tabular} & 12                                                                                          & 12                                                                                          & 12                                                                                         & 12                                                                    & 12                                & 4                                 \\ \hline
+\end{tabular}
+}
+\caption{Wrapper design for width of 6}
+\end{table}
 \end{document}

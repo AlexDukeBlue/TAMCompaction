@@ -37,11 +37,11 @@ def design_wrapper(tam_width, primary_input_num, primary_output_num, internal_sc
     print(*activity_monitor, sep = "\n")
     return wrapper_chains
 
-design_wrapper(4, 9, 11, [12, 12, 8, 8, 8, 6, 6, 6, 6])
+#design_wrapper(4, 9, 11, [12, 12, 8, 8, 8, 6, 6, 6, 6])
 
-#design_wrapper(2, 16, 8, [12, 12, 8, 8])
-#design_wrapper(3, 16, 8, [12, 12, 8, 8])
-#design_wrapper(4, 16, 8, [12, 12, 8, 8])
-#design_wrapper(5, 16, 8, [12, 12, 8, 8])
-#design_wrapper(6, 16, 8, [12, 12, 8, 8])
+design_wrapper(2, 16, 8, [12, 12, 8, 8])
+design_wrapper(3, 16, 8, [12, 12, 8, 8])
+design_wrapper(4, 16, 8, [12, 12, 8, 8])
+design_wrapper(5, 16, 8, [12, 12, 8, 8])
+design_wrapper(6, 16, 8, [12, 12, 8, 8])
 #design_wrapper(18, 16, 8, [12, 12, 8, 8])
