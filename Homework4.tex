@@ -39,6 +39,7 @@ By submitting this \LaTeX{} document, I affirm that
 \subsection*{a. Path Delay Faults}
 \subsubsection*{(i)}
 \begin{table}[ht]
+\centering
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
 Number of Critical Paths & 50      & 100     & 150     & 200     & 250     & 300     \\ \hline
@@ -54,6 +55,7 @@ CPU Time                 & 0.02    & 0.02    & 0.03    & 0.02    & 0.03    & 0.0
 \subsubsection*{(ii)}
 
 \begin{table}[ht]
+\centering
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
 Number of Critical Paths & 50      & 100     & 150     & 200     & 250     & 300     \\ \hline
@@ -69,6 +71,7 @@ CPU Time                 & 0.01    & 0.03    & 0.03    & 0.03    & 0.03    & 0.0
 \subsection*{b. Small Delay Defects}
 \subsubsection*{(i)}
 \begin{table}[ht]
+\centering
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
 Slack               & 10\%            & 15\%             & 20\%            & 25\%             & 30\%            \\ \hline
@@ -78,12 +81,14 @@ Delay Effectiveness & 0.11ns(55.17\%) & 0.165ns(30.75\%) & 0.22ns(50.08\%) & 0.2
 SDQL                & 6289088.50      & 6126893.50       & 5438607.50      & 4897204.50       & 4477742.50      \\ \hline
 CPU Time            & 0.07            & 0.07             & 0.07            & 0.08             & 0.08            \\ \hline
 \end{tabular}
+\caption{Results for small delay defects, 1.1ns clock period}
 \end{table}
 
 \newpage
 
 \subsubsection*{(ii)}
 \begin{table}[ht]
+\centering
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
 Slack               & 10\%           & 15\%            & 20\%            & 25\%            & 30\%            \\ \hline
@@ -93,6 +98,20 @@ Delay Effectiveness & 0.12ns(6.64\%) & 0.18ns(49.23\%) & 0.24ns(25.95\%) & 0.30n
 SDQL                & 5756102.00     & 5206344.50      & 5301291.50      & 4501716.00      & 4122875.25      \\ \hline
 CPU Time            & 0.08           & 0.06            & 0.07            & 0.07            & 0.08            \\ \hline
 \end{tabular}
+\caption{Results for small delay defects, 1.2ns clock period}
 \end{table}
 \subsubsection*{(iii)}
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Slack               & 10\%            & 15\%            & 20\%            & 25\%            & 30\%            \\ \hline
+Total Faults        & 4094            & 4094            & 4094            & 4094            & 4094            \\ \hline
+Detected            & 3994            & 3994            & 3994            & 3994            & 3994            \\ \hline
+Delay Effectiveness & 0.10ns(44.24\%) & 0.15ns(45.63\%) & 0.20ns(50.85\%) & 0.25ns(51.03\%) & 0.30ns(58.95\%) \\ \hline
+SDQL                & 6445672.00      & 5683769.50      & 5567790.00      & 5023122.00      & 4668992.50      \\ \hline
+CPU Time            & 0.07            & 0.08            & 0.08            & 0.08            & 0.08            \\ \hline
+\end{tabular}
+\caption{Results for small delay defects, 1.0ns clock period}
+\end{table}
 \end{document}
