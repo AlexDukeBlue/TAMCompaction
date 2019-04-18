@@ -1,4 +1,5 @@
 \documentclass[letterpaper]{article} % Feel free to change this
+\usepackage[pass]{geometry}
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{rotating}
@@ -16,7 +17,8 @@
 % comment out the next two lines if it doesn't compile for you
 % or you could just install this package as well
 \usepackage{vmargin}   
-\setmarginsrb{1.0in}{1.0in}{1.0in}{1.0in}{12pt}{10mm}{12pt}{0mm}
+\setmarginsrb{2.5cm}{2.5cm}{2.5cm}{2.5cm}{12pt}{6mm}{6pt}{6mm}
+\setpapersize{A4}
 \usepackage{fancyhdr}
  
 \pagestyle{fancy}
@@ -24,6 +26,11 @@
 \rhead{ECE 538 Assignment 4}
 \lhead{Alexander Zapata}
 \rfoot{Page \thepage}
+
+\setlength\paperheight{11in}
+\setlength\paperwidth{8.5in}
+\pdfpagewidth=\paperwidth
+\pdfpageheight=\paperheight
  
 \begin{document}
 
@@ -56,7 +63,7 @@ Number of Critical Paths & 50      & 100     & 150     & 200     & 250     & 300
 Total Faults             & 50      & 100     & 150     & 200     & 250     & 300     \\ \hline
 Detected                 & 44      & 82      & 123     & 128     & 129     & 128     \\ \hline
 Test Coverage            & 88.00\% & 82.00\% & 82.00\% & 64.00\% & 51.60\% & 42.67\% \\ \hline
-Patterns                 & 9       & 18      & 19      & 19      & 19      & 18      \\ \hline
+Patterns                 & 9       & 18      & 19      & 18      & 19      & 18      \\ \hline
 CPU Time                 & 0.02    & 0.02    & 0.03    & 0.02    & 0.03    & 0.05    \\ \hline
 \end{tabular}
 \caption{Results for path-delay faults, 0.15ns clock period}
@@ -78,7 +85,7 @@ CPU Time                 & 0.01    & 0.03    & 0.03    & 0.03    & 0.03    & 0.0
 \end{tabular}
 \caption{Results for path-delay faults, 0.10ns clock period}
 \end{table}
-The fault coverage for the 0.15ns/0.10ns path delay fault simulations were exactly the same. Having the same total faults, detected faults, and fault coverage means that--- from one timing to the next--- no additional delay faults were found on the critical paths tested (i.e., the paths not detected in the 0.15ns simulation had significant enough slack to also not be detected in the 0.10ns simulation). Between simulations, there was one more pattern for the 200 critical path simulation with 0.15ns clock than 0.10ns clock. This means that with the faster clock, fewer patterns were necessary to sensitize a delay long enough to detect. The CPU times were roughly the same for each simulation.
+The fault coverage for the 0.15ns/0.10ns path delay fault simulations were exactly the same. Having the same total faults, detected faults, and fault coverage means that--- from one timing to the next--- no additional delay faults were found on the critical paths tested (i.e., the paths not detected in the 0.15ns simulation had significant enough slack to also not be detected in the 0.10ns simulation). Between simulations, the same number of testing patterns were also generated. The CPU times were roughly the same for each simulation. Because both 0.15ns/0.10ns clock period simulations were the same, it seems that all the detected faults were either gross-delay faults or other critical paths retained enough slack that the clock period difference did not change their detection status.
 
 \subsection*{b. Small Delay Defects}
 \subsubsection*{(i)}
@@ -186,9 +193,9 @@ As can be seen in Figure 1, the result of the LFSR compaction was found to be a 
 \hline
                                                                     & Wrapper SC 1                                                                                                    & Wrapper SC 2                                                                                                    & Wrapper SC 3                                                                                & Wrapper SC 4                                                                                                   \\ \hline
 \begin{tabular}[c]{@{}c@{}}Wrapper\\ Internal SCs\end{tabular}      & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\\ - one 6-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\\ - one 6-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - two 8-bit chains\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 8-bit chain\\ - two 6-bit chain\end{tabular}} \\ \hline
-\begin{tabular}[c]{@{}c@{}}Wrapper\\ Input Cells\end{tabular}       & 3                                                                                                               & 2                                                                                                               & 4                                                                                           & 0                                                                                                              \\ \hline
-\begin{tabular}[c]{@{}c@{}}Wrapper\\ Output Cells\end{tabular}      & 2                                                                                                               & 3                                                                                                               & 3                                                                                           & 3                                                                                                              \\ \hline
-\begin{tabular}[c]{@{}c@{}}Scan-in, Scan-out\\  Length\end{tabular} & 23                                                                                                              & 23                                                                                                              & 23                                                                                          & 23                                                                                                             \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Input Cells\end{tabular}       & 2                                                                                                               & 2                                                                                                               & 4                                                                                           & 0                                                                                                              \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Output Cells\end{tabular}      & 3                                                                                                               & 3                                                                                                               & 5                                                                                           & 0                                                                                                              \\ \hline
+\begin{tabular}[c]{@{}c@{}}Scan-in, Scan-out\\  Length\end{tabular} & 20, 21                                                                                                              & 20, 21                                                                                                              & 20, 21                                                                                          & 20, 20                                                                                                             \\ \hline
 \end{tabular}
 \caption{Wrapper design generated for embedded core C, TAM width of 4}
 \end{table}
@@ -225,15 +232,16 @@ def design_wrapper(tam_width, primary_input_num, primary_output_num, internal_sc
     minimize_function(wrapper_chains, internal_scan, activity_monitor, "sc")
     #Step 2
     primary_inputs = [1] * primary_input_num
-    minimize_function(wrapper_chains, primary_inputs, activity_monitor, "pi")
+    wrapper_chains_copy1 = wrapper_chains.copy()
+    minimize_function(wrapper_chains_copy1, primary_inputs, activity_monitor, "pi")
     #Step 3
     primary_outputs = [1] * primary_output_num
-    minimize_function(wrapper_chains, primary_outputs, activity_monitor, "po")
-    activity_monitor.append("Final wrapper chains: {}".format(wrapper_chains))
+    wrapper_chains_copy2 = wrapper_chains.copy()
+    minimize_function(wrapper_chains_copy2, primary_outputs, activity_monitor, "po")
     print(*activity_monitor, sep = "\n")
     return wrapper_chains
 
-design_wrapper(4, 9, 11, [12, 12, 8, 8, 8, 6, 6, 6, 6])
+design_wrapper(4, 8, 11, [12, 12, 8, 8, 8, 6, 6, 6, 6])
 \end{lstlisting}
 
 \newpage
@@ -264,8 +272,8 @@ design_wrapper(4, 9, 11, [12, 12, 8, 8, 8, 6, 6, 6, 6])
                                                                     & Wrapper SC 1                                                                                & Wrapper SC 2                                                                                & Wrapper SC 3                                                                               \\ \hline
 \begin{tabular}[c]{@{}c@{}}Wrapper\\ Internal SCs\end{tabular}      & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - two 8-bit chain\end{tabular}} \\ \hline
 \begin{tabular}[c]{@{}c@{}}Wrapper\\ Input Cells\end{tabular}       & 7                                                                                           & 7                                                                                           & 2                                                                                          \\ \hline
-\begin{tabular}[c]{@{}c@{}}Wrapper\\ Output Cells\end{tabular}      & 3                                                                                           & 2                                                                                           & 3                                                                                          \\ \hline
-\begin{tabular}[c]{@{}c@{}}Scan-in, Scan-out\\  Length\end{tabular} & 22                                                                                          & 21                                                                                          & 21                                                                                         \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Output Cells\end{tabular}      & 4                                                                                           & 4                                                                                           & 0                                                                                          \\ \hline
+\begin{tabular}[c]{@{}c@{}}Scan-in, Scan-out\\  Length\end{tabular} & 19, 16                                                                                          & 19, 16                                                                                          & 18, 16                                                                                        \\ \hline
 \end{tabular}
 }
 \caption{Wrapper design for width of 3}
@@ -279,8 +287,8 @@ design_wrapper(4, 9, 11, [12, 12, 8, 8, 8, 6, 6, 6, 6])
                                                                     & Wrapper SC 1                                                                                & Wrapper SC 2                                                                                & Wrapper SC 3                                                                               & Wrapper SC 4                                                          \\ \hline
 \begin{tabular}[c]{@{}c@{}}Wrapper\\ Internal SCs\end{tabular}      & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 8-bit chain\end{tabular}} & \begin{tabular}[c]{@{}c@{}}Included:\\ - one 8-bit chain\end{tabular} \\ \hline
 \begin{tabular}[c]{@{}c@{}}Wrapper\\ Input Cells\end{tabular}       & 2                                                                                           & 2                                                                                           & 6                                                                                          & 6                                                                     \\ \hline
-\begin{tabular}[c]{@{}c@{}}Wrapper\\ Output Cells\end{tabular}      & 2                                                                                           & 2                                                                                           & 2                                                                                          & 2                                                                     \\ \hline
-\begin{tabular}[c]{@{}c@{}}Scan-in, Scan-out\\  Length\end{tabular} & 16                                                                                          & 16                                                                                          & 16                                                                                         & 16                                                                    \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Output Cells\end{tabular}      & 0                                                                                           & 0                                                                                           & 4                                                                                          & 4                                                                     \\ \hline
+\begin{tabular}[c]{@{}c@{}}Scan-in, Scan-out\\  Length\end{tabular} & 14, 12                                                                                          & 14, 12                                                                                          & 14, 12                                                                                         & 14, 12                                                                    \\ \hline
 \end{tabular}
 }
 \caption{Wrapper design for width of 4}
@@ -296,8 +304,8 @@ design_wrapper(4, 9, 11, [12, 12, 8, 8, 8, 6, 6, 6, 6])
                                                                     & Wrapper SC 1                                                                                & Wrapper SC 2                                                                                & Wrapper SC 3                                                                               & Wrapper SC 4                                                          & \multicolumn{1}{l|}{Wrapper SC 5} \\ \hline
 \begin{tabular}[c]{@{}c@{}}Wrapper\\ Internal SCs\end{tabular}      & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 8-bit chain\end{tabular}} & \begin{tabular}[c]{@{}c@{}}Included:\\ - one 8-bit chain\end{tabular} & None                              \\ \hline
 \begin{tabular}[c]{@{}c@{}}Wrapper\\ Input Cells\end{tabular}       & 0                                                                                           & 0                                                                                           & 4                                                                                          & 4                                                                     & 8                                 \\ \hline
-\begin{tabular}[c]{@{}c@{}}Wrapper\\ Output Cells\end{tabular}      & 1                                                                                           & 1                                                                                           & 1                                                                                          & 1                                                                     & 4                                 \\ \hline
-\begin{tabular}[c]{@{}c@{}}Scan-in, Scan-out\\  Length\end{tabular} & 13                                                                                          & 13                                                                                          & 13                                                                                         & 13                                                                    & 12                                \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Output Cells\end{tabular}      & 0                                                                                           & 0                                                                                           & 4                                                                                          & 4                                                                     & 0                                 \\ \hline
+\begin{tabular}[c]{@{}c@{}}Scan-in, Scan-out\\  Length\end{tabular} & 12                                                                                          & 12                                                                                          & 12                                                                                         & 12                                                                    & 8                                \\ \hline
 \end{tabular}
 }
 \caption{Wrapper design for width of 5}
@@ -311,15 +319,15 @@ design_wrapper(4, 9, 11, [12, 12, 8, 8, 8, 6, 6, 6, 6])
                                                                     & Wrapper SC 1                                                                                & Wrapper SC 2                                                                                & Wrapper SC 3                                                                               & Wrapper SC 4                                                          & \multicolumn{1}{l|}{Wrapper SC 5} & \multicolumn{1}{l|}{Wrapper SC 6} \\ \hline
 \begin{tabular}[c]{@{}c@{}}Wrapper\\ Internal SCs\end{tabular}      & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 12-bit chain\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Included:\\ - one 8-bit chain\end{tabular}} & \begin{tabular}[c]{@{}c@{}}Included:\\ - one 8-bit chain\end{tabular} & None                              & None                              \\ \hline
 \begin{tabular}[c]{@{}c@{}}Wrapper\\ Input Cells\end{tabular}       & 0                                                                                           & 0                                                                                           & 4                                                                                          & 4                                                                     & 8                                 & 0                                 \\ \hline
-\begin{tabular}[c]{@{}c@{}}Wrapper\\ Output Cells\end{tabular}      & 0                                                                                           & 0                                                                                           & 0                                                                                          & 0                                                                     & 4                                 & 4                                 \\ \hline
-\begin{tabular}[c]{@{}c@{}}Scan-in, Scan-out\\  Length\end{tabular} & 12                                                                                          & 12                                                                                          & 12                                                                                         & 12                                                                    & 12                                & 4                                 \\ \hline
+\begin{tabular}[c]{@{}c@{}}Wrapper\\ Output Cells\end{tabular}      & 0                                                                                           & 0                                                                                           & 4                                                                                          & 4                                                                     & 0                                 & 0                                 \\ \hline
+\begin{tabular}[c]{@{}c@{}}Scan-in, Scan-out\\  Length\end{tabular} & 12                                                                                          & 12                                                                                          & 12                                                                                         & 12                                                                    & 8                                & 0                                 \\ \hline
 \end{tabular}
 }
 \caption{Wrapper design for width of 6}
 \end{table}
 
 \subsection*{(b)}
-\hspace{0.5cm}Knowing the acceptable widths of the wrappers, and the fact that each of the 8 SOCs are identical, greatly simplified this problem. The following code was used to maximize the minimum wrapper width for this TAM design (minimizing scan-in/scan-out length and therefore minimizing test-time).
+\hspace{0.5cm}Knowing the acceptable widths of the wrappers (Arjun said in office-hours that we can only use the sizes from part (a)), and the fact that each of the 8 SOCs are identical, greatly simplified this problem. The following code was used to maximize the minimum wrapper width for this TAM design (minimizing scan-in/scan-out length and therefore minimizing test-time).
 
 \begin{lstlisting}[language=Python, caption=Python code used to minimize TAM test time for the given SOC design]
 	
@@ -338,7 +346,7 @@ def tam_designer(total_width, wrapper_widths, num_cores):
 print(tam_designer(36, [2, 3, 4, 5, 6], 8))
 \end{lstlisting}
 
-In the TAM design result, each embedded core wrapper is given their own TAM lines; however, the TAM width is not the same for each core because of the 36-bit TAM width constraint. No wrappers share TAM lines in this case, as preempting tests would result in longer maximum test time for the given widths. Four of the wrappers will have a TAM width of 5 and the other will have TAM widths of 4. This ensures the maximum scan-in/scan-out time is 16 clock cycles, corresponding to the BFD optimization in part (a) and assuming one clock cycle per single-bit shift-in/shift-out.
+In the TAM design result, each embedded core wrapper is given their own TAM lines; however, the TAM width is not the same for each core because of the 36-bit TAM width constraint. No wrappers share TAM lines in this case, as preempting tests or testing serially would result in longer maximum test time for the given widths. Four of the wrappers will have a TAM width of 5 and the other will have TAM widths of 4. This ensures the maximum scan-in/scan-out is 14/12 shifts or 27 clock cycles, including a 1 clock cycle capture, corresponding to the BFD optimization in part (a) and assuming one clock cycle per single-bit shift-in/shift-out.
 
 \newpage
 

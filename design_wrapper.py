@@ -29,19 +29,18 @@ def design_wrapper(tam_width, primary_input_num, primary_output_num, internal_sc
     minimize_function(wrapper_chains, internal_scan, activity_monitor, "sc")
     #Step 2
     primary_inputs = [1] * primary_input_num
-    minimize_function(wrapper_chains, primary_inputs, activity_monitor, "pi")
+    wrapper_chains_copy1 = wrapper_chains.copy()
+    minimize_function(wrapper_chains_copy1, primary_inputs, activity_monitor, "pi")
     #Step 3
     primary_outputs = [1] * primary_output_num
-    minimize_function(wrapper_chains, primary_outputs, activity_monitor, "po")
-    activity_monitor.append("Final wrapper chains: {}".format(wrapper_chains))
+    wrapper_chains_copy2 = wrapper_chains.copy()
+    minimize_function(wrapper_chains_copy2, primary_outputs, activity_monitor, "po")
     print(*activity_monitor, sep = "\n")
     return wrapper_chains
 
-#design_wrapper(4, 9, 11, [12, 12, 8, 8, 8, 6, 6, 6, 6])
-
-design_wrapper(2, 16, 8, [12, 12, 8, 8])
-design_wrapper(3, 16, 8, [12, 12, 8, 8])
-design_wrapper(4, 16, 8, [12, 12, 8, 8])
-design_wrapper(5, 16, 8, [12, 12, 8, 8])
+# design_wrapper(4, 8, 11, [12, 12, 8, 8, 8, 6, 6, 6, 6])
+# design_wrapper(2, 16, 8, [12, 12, 8, 8])
+# design_wrapper(3, 16, 8, [12, 12, 8, 8])
+# design_wrapper(4, 16, 8, [12, 12, 8, 8])
+# design_wrapper(5, 16, 8, [12, 12, 8, 8])
 design_wrapper(6, 16, 8, [12, 12, 8, 8])
-#design_wrapper(18, 16, 8, [12, 12, 8, 8])
